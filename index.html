@@ -16,7 +16,7 @@ function enterParent(){if(window.speechSynthesis){speechSynthesis.cancel();busy=
 function leaveParent(){ history.replaceState(null,'',location.pathname); $('#parent').classList.remove('open');render();if(mode==='quiz')speak('¿Dónde está '+articles[ids[index]]+' '+ids[index]+'?') }
 $('#explore').onclick=()=>{mode='explore';$('#explore').classList.add('active');$('#quiz').classList.remove('active')};
 $('#quiz').onclick=()=>{mode='quiz';$('#quiz').classList.add('active');$('#explore').classList.remove('active')};
-$('#level').onchange=e=>level=+e.target.value;
+$('#level').onchange=e=>{level=+e.target.value;mode='quiz';$('#quiz').classList.add('active');$('#explore').classList.remove('active');};
 $('#prev').onclick=()=>next(-1);$('#next').onclick=()=>next(1);$('#repeat').onclick=()=>speak(mode==='explore'?ids[index]:'¿Dónde está '+articles[ids[index]]+' '+ids[index]+'?');
 $('#rate').oninput=e=>$('#speed').textContent=(+e.target.value).toFixed(2)+'×';$('#close').onclick=leaveParent;
 $('#fullscreen').onclick=()=>{document.documentElement.requestFullscreen?.().catch(()=>{})};
